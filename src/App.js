@@ -9,15 +9,15 @@ import TodoSearch from "./components/TodoSearch";
 const todos = [
   {
     text: 'Hola este es un todo',
-    completed:false
+    completed: false
   },
   {
     text: 'Tomar el curso',
-    completed:false
+    completed: false
   },
   {
     text: 'Bañate',
-    completed:false
+    completed: true
   },
 ]
 
@@ -26,13 +26,13 @@ function App() {
     <React.Fragment>
       <TodoCounter />
 
-      <TodoSearch/>
+      <TodoSearch />
 
       <TodoList>
-        {todos.map(({text, completed}) => (
-          <TodoItem text={text} key={text} />
+        {todos.map(({ text, completed }) => (
+          <TodoItem text={text} key={text} completed={completed} />
         ))}
-        </TodoList>
+      </TodoList>
 
       <CreateTodoButton />
     </React.Fragment>

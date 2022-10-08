@@ -1,7 +1,7 @@
 import React from "react";
-
+import './TodoSearch.css'
 export default function TodoSearch(props) {
     return (
-        <input placeholder="Estamos como component" />
+        <input className="TodoSearch" placeholder="Search task..." />
     )
 }
