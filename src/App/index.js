@@ -23,10 +23,20 @@ const defTodos = [
 ]
 
 function App() {
-  const [todos, setTodos] = useState(defTodos)
+  const dataLocal = localStorage.getItem('TODOS_V1')
+  let parsedTodos;
+  if (!dataLocal) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]))
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(dataLocal)
+  }
+
+  const [todos, setTodos] = useState(parsedTodos)
   const [search, setSearch] = useState('')
   const completedTodos = todos.filter(item => !!item.completed).length;
   const totalTodos = todos.length;
+
 
   let searchedTodos = []
   if ( !search>=1 ) {
@@ -35,20 +45,25 @@ function App() {
     searchedTodos = todos.filter(item => (
       item.text.toLowerCase().includes(search.toLowerCase())
     ))
+  };
+
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
+    setTodos(newTodos)
   }
 
   const onCompletedTodo = (text) => {
     const indItem = todos.findIndex(e => e.text === text);
     const newTodos = [...todos];
     newTodos[indItem].completed = !newTodos[indItem].completed;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   const onDeletedTodo = (text) => {
     const indItem = todos.findIndex(e => e.text === text);
     const newTodos = [...todos];
     newTodos.splice(indItem, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   return (
