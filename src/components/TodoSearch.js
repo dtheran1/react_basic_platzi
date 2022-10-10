@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import './TodoSearch.css'
 
 export default function TodoSearch({search, setSearch}) {
