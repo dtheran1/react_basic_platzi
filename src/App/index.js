@@ -1,38 +1,45 @@
 // import './App.css';
-import React, { useState } from "react";
-import { TodoCounter } from '../components/TodoCounter'
-import CreateTodoButton from "../components/CreateTodoButton";
-import TodoList from "../components/TodoList";
-import TodoItem from "../components/TodoItem";
-import TodoSearch from "../components/TodoSearch";
+import React, { useEffect, useState } from "react";
 import AppUI from './AppUI'
 
-const defTodos = [
-  {
-    text: 'Hola este es un todo',
-    completed: false
-  },
-  {
-    text: 'Tomar el curso',
-    completed: false
-  },
-  {
-    text: 'Bañate',
-    completed: true
-  },
-]
+function useLocalStorage(itemName, initialValue) {
+  const [item, setItem] = useState(initialValue);
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-function App() {
-  const dataLocal = localStorage.getItem('TODOS_V1')
-  let parsedTodos;
-  if (!dataLocal) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = [];
-  } else {
-    parsedTodos = JSON.parse(dataLocal)
+  useEffect(()=> {
+    setTimeout(() => {
+      try {
+        const localStorageItem = localStorage.getItem(itemName)
+        let parsedItem;
+        if (!localStorageItem) {
+          localStorage.setItem(itemName, JSON.stringify(initialValue))
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+        }
+        setItem(parsedItem)
+        setLoading(false)
+      } catch (error) {
+        setError(error)
+      }
+    }, 3000);
+  })
+
+  const saveItem = (newItem) => {
+    try {
+      localStorage.setItem(itemName, JSON.stringify(newItem));
+      setItem(newItem);
+    } catch (error) {
+      setError(error)
+    }
   }
 
-  const [todos, setTodos] = useState(parsedTodos)
+  return {item, saveItem, loading, error}
+}
+
+function App() {
+  const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
   const [search, setSearch] = useState('')
   const completedTodos = todos.filter(item => !!item.completed).length;
   const totalTodos = todos.length;
@@ -46,11 +53,6 @@ function App() {
       item.text.toLowerCase().includes(search.toLowerCase())
     ))
   };
-
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
-    setTodos(newTodos)
-  }
 
   const onCompletedTodo = (text) => {
     const indItem = todos.findIndex(e => e.text === text);
@@ -75,6 +77,8 @@ function App() {
       searchedTodos={searchedTodos}
       onCompletedTodo={onCompletedTodo}
       onDeletedTodo={onDeletedTodo}
+      loading={loading}
+      error={error}
     />
   );
 }

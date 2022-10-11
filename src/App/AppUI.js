@@ -13,6 +13,8 @@ export default function AppUI({
     searchedTodos,
     onCompletedTodo,
     onDeletedTodo,
+    error,
+    loading
 }) {
     return (<React.Fragment>
         <TodoCounter
@@ -26,6 +28,9 @@ export default function AppUI({
         />
 
         <TodoList>
+            {error && <p>Desesperate, hubo un error...</p>}
+            {loading && <p>Estamos Cargando, no desesperes...</p>}
+            {(!loading && !searchedTodos.length) && <p>Crea tu primer Todo!</p>}
             {searchedTodos.map(({ text, completed }) => (
                 <TodoItem
                     text={text}
