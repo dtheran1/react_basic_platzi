@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-const TodoContext = React.createContext()
+const TodoContext = React.createContext();
 // const { Provider, Consumer } = createContext();
 
 function TodoProvider(props) {
     const { item: todos, saveItem: saveTodos, loading, error } = useLocalStorage('TODOS_V1', []);
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = React.useState('')
     const completedTodos = todos.filter(item => !!item.completed).length;
     const totalTodos = todos.length;
 
@@ -50,4 +50,4 @@ function TodoProvider(props) {
     );
 }
 
-export { TodoProvider, TodoContext }
+export { TodoProvider, TodoContext };

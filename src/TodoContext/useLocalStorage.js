@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 function useLocalStorage(itemName, initialValue) {
     const [item, setItem] = useState(initialValue);
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -36,4 +36,4 @@ function useLocalStorage(itemName, initialValue) {
     return { item, saveItem, loading, error }
 }
 
-export { useLocalStorage }
+export { useLocalStorage };
