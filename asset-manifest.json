@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react_basic_platzi/static/css/main.23bbedd5.css",
+    "main.js": "/react_basic_platzi/static/js/main.de1b9bbe.js",
+    "index.html": "/react_basic_platzi/index.html",
+    "static/media/cross.svg": "/react_basic_platzi/static/media/cross.7547ed76b90d5776991c702ed4c38e65.svg",
+    "static/media/check.svg": "/react_basic_platzi/static/media/check.a9423def4c7e9f1d791c832b06b33ee6.svg",
+    "main.23bbedd5.css.map": "/react_basic_platzi/static/css/main.23bbedd5.css.map",
+    "main.de1b9bbe.js.map": "/react_basic_platzi/static/js/main.de1b9bbe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23bbedd5.css",
+    "static/js/main.de1b9bbe.js"
+  ]
+}
