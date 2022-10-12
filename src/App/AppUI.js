@@ -9,6 +9,9 @@ import { Modal } from "../Modal";
 
 import { TodoContext } from '../TodoContext'
 import { TodoForm } from "../components/TodoForm";
+import { TodosError } from "../components/TodosError";
+import { TodosLoading } from "../components/Todosloading";
+import { EmptyTodos } from "../components/EmptyTodos";
 
 export default function AppUI() {
 
@@ -20,9 +23,9 @@ export default function AppUI() {
         <TodoSearch />
 
         <TodoList>
-            {error && <p>Desesperate, hubo un error...</p>}
-            {loading && <p>Estamos Cargando, no desesperes...</p>}
-            {(!loading && !searchedTodos.length) && <p>Crea tu primer Todo!</p>}
+            {error && <TodosError error={error} />}
+            {loading && <TodosLoading />}
+            {(!loading && !searchedTodos.length) && <EmptyTodos />}
             {searchedTodos.map(({ text, completed }) => (
                 <TodoItem
                     text={text}

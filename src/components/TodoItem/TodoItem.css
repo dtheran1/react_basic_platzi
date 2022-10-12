@@ -1,14 +1,14 @@
 .TodoItem {
-  background-color: #2a275c;
+  background-color: #212033;
   position: relative;
   display: flex;
   justify-content: center;
   border-radius: 50px;
   align-items: center;
   margin-top: 24px;
-  height: 40px;
+  height: 50px;
   color: #fdfdfd;
-  box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+  box-shadow: 0px 5px 50px rgba(180, 186, 197, 0.15);
 }
 
 .TodoItem-p {
