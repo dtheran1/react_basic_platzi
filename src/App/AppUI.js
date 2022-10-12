@@ -8,6 +8,7 @@ import TodoSearch from "../components/TodoSearch";
 import { Modal } from "../Modal";
 
 import { TodoContext } from '../TodoContext'
+import { TodoForm } from "../components/TodoForm";
 
 export default function AppUI() {
 
@@ -36,7 +37,7 @@ export default function AppUI() {
         {
             !!isOpenModal && (
                 <Modal>
-                    <p>Teletransportt</p>
+                    <TodoForm />
                 </Modal>
             )
         }
